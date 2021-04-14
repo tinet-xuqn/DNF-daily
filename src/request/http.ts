@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.timeout = 60 * 1000;
+
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
@@ -9,6 +10,7 @@ axios.interceptors.request.use(function (config) {
   // 对请求错误做些什么
   return Promise.reject(error);
 });
+
 
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
@@ -20,7 +22,7 @@ axios.interceptors.response.use(function (response) {
 });
 
 export default {
-  get(url: string, param: any) {
+  get(url: string, param: any = '') {
     if (param !== undefined) {
       Object.assign(param, {
         _t: new Date().getTime(),
@@ -35,6 +37,20 @@ export default {
         method: 'get',
         url,
         params: param,
+      }).then((res) => {
+        resolve(res);
+      });
+    });
+  },
+  getImage(url: string) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'get',
+        url,
+        headers: {
+          "Accept": "image/png",
+        },
+        responseType: 'blob',
       }).then((res) => {
         resolve(res);
       });

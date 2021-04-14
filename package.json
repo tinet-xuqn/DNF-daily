@@ -10,6 +10,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.39",
+    "qrcodejs2": "0.0.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
@@ -47,6 +48,10 @@
       "@vue/prettier",
       "@vue/prettier/@typescript-eslint"
     ],
+    "rules": {
+      "vue/no-multiple-template-root": "off",
+      "singleQuote": true
+    },
     "parserOptions": {
       "ecmaVersion": 2020
     }
