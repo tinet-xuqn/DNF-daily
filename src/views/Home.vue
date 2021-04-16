@@ -36,7 +36,6 @@ export default defineComponent({
 
     const checkLoginRes = (qrsig: string) => {
       request.checkLoginRes(qrsig).then((res: any) => {
-
         if (res.data.includes("登录成功")) {
           window.clearInterval(nIntervId);
           router.push("/about");

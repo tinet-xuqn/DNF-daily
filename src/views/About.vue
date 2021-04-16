@@ -8,14 +8,17 @@
       v-model="value"
       :options="options"
       @change="handleChange"
-      :props="cascaderProps"></el-cascader>
+      :props="cascaderProps"
+    >
+    </el-cascader>
 
     <el-select v-model="roleValue" placeholder="请选择">
       <el-option
         v-for="item in roleOptions"
         :key="item.id"
         :label="item.name"
-        :value="item.id">
+        :value="item.id"
+      >
       </el-option>
     </el-select>
 
@@ -30,15 +33,15 @@ export default defineComponent({
   name: "About",
   data() {
     return {
-      value: '',
-      roleValue: '',
+      value: "",
+      roleValue: "",
       options: STD_DATA,
       roleOptions: [],
       cascaderProps: {
-        value: 'v',
-        label: 't',
-        children: 'opt_data_array',
-      }
+        value: "v",
+        label: "t",
+        children: "opt_data_array",
+      },
     };
   },
   methods: {
@@ -63,6 +66,7 @@ export default defineComponent({
 
     getNowRole(): void {
       request.getNowRole().then((res) => {
+        console.log(res);
       });
     },
   },
