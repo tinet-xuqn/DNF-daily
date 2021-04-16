@@ -49,8 +49,7 @@
       "@vue/prettier/@typescript-eslint"
     ],
     "rules": {
-      "vue/no-multiple-template-root": "off",
-      "singleQuote": true
+      "vue/no-multiple-template-root": "off"
     },
     "parserOptions": {
       "ecmaVersion": 2020

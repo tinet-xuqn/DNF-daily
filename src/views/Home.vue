@@ -8,6 +8,7 @@
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
 import request from "../request/login";
+import router from "../router/index";
 export default defineComponent({
   name: "Home",
   data() {
@@ -35,9 +36,10 @@ export default defineComponent({
 
     const checkLoginRes = (qrsig: string) => {
       request.checkLoginRes(qrsig).then((res: any) => {
-        console.log(res);
-        if (res.status === 200) {
+
+        if (res.data.includes("登录成功")) {
           window.clearInterval(nIntervId);
+          router.push("/about");
         }
       });
     };
