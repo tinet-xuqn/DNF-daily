@@ -100,8 +100,8 @@ export default defineComponent({
       const roleData = this.roleOptions.find((item: any) => {
         return item.id === this.roleValue;
       });
-      request.setRoles(roleData).then((res: any) => {
-        console.log(res);
+      request.setRoles(roleData).then(() => {
+        this.nowRole = (roleData as any).name;
       });
     },
     handleReceive(): void {
