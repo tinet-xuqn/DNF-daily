@@ -1,6 +1,9 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+    <p>
+      <span>当前绑定角色：</span>
+      <span>{{ nowRole }}</span>
+    </p>
   </div>
 
   <div>
@@ -24,9 +27,25 @@
 
     <el-button type="primary" @click="setRole">绑定</el-button>
   </div>
+
+  <div class="aboutTable">
+    <el-table :data="nowActivity" style="width: 100%">
+      <el-table-column prop="enable" label="是否可用" width="180">
+        <template #default="scope">
+          <el-checkbox v-model="scope.row.enable">状态</el-checkbox>
+        </template>
+      </el-table-column>
+      <el-table-column prop="name" label="活动" width="280"></el-table-column>
+      <el-table-column prop="message" label="结果"></el-table-column>
+    </el-table>
+  </div>
+
+  <div>
+    <el-button type="primary" @click="handleReceive">领取</el-button>
+  </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import { STD_DATA } from "../assets/dnf_server_select";
 import request from "../request/login";
 export default defineComponent({
@@ -42,6 +61,28 @@ export default defineComponent({
         label: "t",
         children: "opt_data_array",
       },
+    };
+  },
+  setup() {
+    const nowRole = ref("");
+    const nowActivity = ref([]);
+    const getNowRole = () => {
+      request.getNowRole().then((res: any) => {
+        nowRole.value = res.data.name;
+      });
+    };
+    const getActivity = () => {
+      request.getActivity().then((res: any) => {
+        nowActivity.value = res.data;
+      });
+    };
+    onMounted(() => {
+      getNowRole();
+      getActivity();
+    });
+    return {
+      nowRole,
+      nowActivity,
     };
   },
   methods: {
@@ -63,12 +104,16 @@ export default defineComponent({
         console.log(res);
       });
     },
-
-    getNowRole(): void {
-      request.getNowRole().then((res) => {
-        console.log(res);
+    handleReceive(): void {
+      request.handleReceive().then((res: any) => {
+        this.nowActivity = res.data;
       });
     },
   },
 });
 </script>
+<style lang="less">
+.aboutTable {
+  padding: 0 50px;
+}
+</style>
