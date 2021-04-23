@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ElMessage } from 'element-plus';
 
 axios.defaults.timeout = 60 * 1000;
 
@@ -22,6 +23,16 @@ axios.interceptors.response.use(
   },
   function (error) {
     // 对响应错误做点什么
+    switch (error.response.status) {
+      case 500:
+        ElMessage.error('请求出错：' +
+          `${error.response.status}--` +
+          `${error.response.data.message}` +
+          `${error.response.data.error}`);
+        break;
+      default:
+        break;
+    }
     return Promise.reject(error);
   }
 );
