@@ -42,29 +42,28 @@
       <el-table-column prop="message" label="结果"></el-table-column>
     </el-table>
   </div>
-
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
-import { STD_DATA } from "../assets/dnf_server_select";
-import request from "../request/dnf_helper";
+import { defineComponent, onMounted, ref } from 'vue';
+import { STD_DATA } from '../assets/dnf_server_select';
+import request from '../request/dnf_helper';
 export default defineComponent({
-  name: "About",
+  name: 'About',
   data() {
     return {
-      value: "",
-      roleValue: "",
+      value: '',
+      roleValue: '',
       options: STD_DATA,
       roleOptions: [],
       cascaderProps: {
-        value: "v",
-        label: "t",
-        children: "opt_data_array",
+        value: 'v',
+        label: 't',
+        children: 'opt_data_array',
       },
     };
   },
   setup() {
-    const nowRole = ref("");
+    const nowRole = ref('');
     const nowActivity = ref([]);
     const getNowRole = () => {
       request.getNowRole().then((res: any) => {

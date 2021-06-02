@@ -50,7 +50,8 @@
     ],
     "rules": {
       "vue/no-multiple-template-root": "off",
-      "@typescript-eslint/no-explicit-any": ["off"]
+      "@typescript-eslint/no-explicit-any": ["off"],
+      "singleQuote": true
     },
     "parserOptions": {
       "ecmaVersion": 2020

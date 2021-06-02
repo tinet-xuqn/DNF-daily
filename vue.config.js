@@ -1,8 +1,8 @@
 module.exports = {
-  publicPath: "./",
-  outputDir: "dnfHelper",
+  publicPath: './',
+  outputDir: 'dnfHelper',
   devServer: {
-    proxy: "http://47.94.132.120/",
+    proxy: 'http://47.94.132.120/',
   },
   lintOnSave: false,
 };

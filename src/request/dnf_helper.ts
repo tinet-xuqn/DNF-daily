@@ -1,4 +1,4 @@
-import http from "./http";
+import http from './http';
 
 export default {
   getRoles(area: string) {
@@ -15,5 +15,5 @@ export default {
   },
   handleReceive() {
     return http.post(`/api/activity/receive`, {});
-  }
+  },
 };

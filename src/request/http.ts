@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import { ElMessage } from 'element-plus';
 
 axios.defaults.timeout = 60 * 1000;
@@ -25,10 +25,11 @@ axios.interceptors.response.use(
     // 对响应错误做点什么
     switch (error.response.status) {
       case 500:
-        ElMessage.error('请求出错：' +
-          `${error.response.status}--` +
-          `${error.response.data.message}` +
-          `${error.response.data.error}`);
+        ElMessage({
+          showClose: true,
+          message: `请求出错：${error.response.status}--${error.response.data.message}${error.response.data.error}`,
+          type: 'error'
+        });
         break;
       default:
         break;
@@ -38,7 +39,7 @@ axios.interceptors.response.use(
 );
 
 export default {
-  get(url: string, param: any = "") {
+  get(url: string, param: any = '') {
     if (param !== undefined) {
       Object.assign(param, {
         _t: new Date().getTime(),
@@ -50,7 +51,7 @@ export default {
     }
     return new Promise((resolve, reject) => {
       axios({
-        method: "get",
+        method: 'get',
         url,
         params: param,
       }).then((res) => {
@@ -61,12 +62,12 @@ export default {
   getImage(url: string) {
     return new Promise((resolve, reject) => {
       axios({
-        method: "get",
+        method: 'get',
         url,
         headers: {
-          Accept: "image/png",
+          Accept: 'image/png',
         },
-        responseType: "blob",
+        responseType: 'blob',
       }).then((res) => {
         resolve(res);
       });
